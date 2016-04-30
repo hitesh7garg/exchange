@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+{%load staticfiles%}
+{%load bootstrap3%}
+<head>
+
+	<!-- Basic Page Needs -->
+	<meta charset="utf-8">
+	<title>AskMe</title>
+	<meta name="description" content="Ask me Responsive Questions and Answers Template">
+	<meta name="author" content="2code.info">
+	
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Main Style -->
+	<link rel="stylesheet" href="{% static 'main/css/style.css'%}">
+	
+	<!-- Skins -->
+	<link rel="stylesheet" href="{% static 'main/css/skins/skins.css'%}">
+	
+	<!-- Responsive Style -->
+	<link rel="stylesheet" href="{%static 'main/css/responsive.css'%}">
+	
+	<!-- Favicons -->
+	<link rel="shortcut icon" href="http://2code.info/demo/html/ask-me/images/favicon.ico">
+	{%bootstrap_css%}
+	{%bootstrap_javascript%}
+  
+</head>
+<body>
+
+<div class="loader"><div class="loader_html"></div></div>
+
+<div id="wrap">
+	<div id="header-top">
+		<section class="container clearfix">
+			<nav class="header-top-nav">
+				<ul>
+					<li><a href="{%url 'contact_us'%}"><i class="icon-envelope"></i>Contact</a></li>
+					<li><a href="#"><i class="icon-headphones"></i>Support</a></li>
+					<li><a href="{%url 'logout'%}"><i class="icon-user"></i>Logout</a></li>
+				</ul>
+			</nav>
+			<div class="header-search">
+				<form>
+				    <input type="text" value="Search here ..." onfocus="if(this.value=='Search here ...')this.value='';" onblur="if(this.value=='')this.value='Search here ...';">
+				    <button type="submit" class="search-submit"></button>
+				</form>
+			</div>
+		</section><!-- End container -->
+	</div><!-- End header-top -->
+	<header id="header">
+		<section class="container clearfix">
+			<div class="logo"><a href="{%url 'main'%}"><img alt="" src="{%static 'main/images/logo.png'%}"></a></div>
+			<nav class="navigation">
+				<ul>
+					<li class="current_page_item"><a href="{%url 'main'%}">Home</a></li>
+					<li class="ask_question"><a href="{%url 'questionupload'%}">Ask Question</a></li>
+					<li><a href="{%url 'profile' user.id%}">{{user.username}}</a>
+						<ul>
+							<li><a href="{%url 'profile' user.id%}">Profile</a></li>
+							<li><a href="{%url 'editprofilepage' user.id%}">Edit Profile</a></li>
+							<li><a href="{%url 'logout'%}">Logout</a></li>
+						</ul>
+					</li>
+					<li><a href="{%url 'contact_us'%}">Contact Us</a></li>
+				</ul>
+			</nav>
+		</section><!-- End container -->
+	</header><!-- End header -->
+	
+	<div class="section-warp ask-me">
+		<div class="container clearfix">
+			<div class="box_icon box_warp box_no_border box_no_background" box_border="transparent" box_background="transparent" box_color="#FFF">
+				<div class="row">
+					<div class="col-md-3">
+						<h2>Welcome to AskMe</h2>
+						<p>"THE ART AND SCIENCE OF ASKING QUESTIONS IS THE SOURCE OF ALL KNOWLEDGE."</p>
+						<div class="clearfix"></div>
+						<a class="color button dark_button medium" href="#">About Us</a>
+						<a class="color button dark_button medium" href="{%url 'rsignup'%}">Join Now</a>
+					</div>
+					<div class="col-md-9">
+						<form class="form-style form-style-2"action="{%url 'questionupload'%}">
+							<p>
+								<textarea rows="4" id="question_title" onfocus="if(this.value=='Ask any question and you be sure find your answer ?')this.value='';" onblur="if(this.value=='')this.value='Ask any question and you be sure find your answer ?';">Ask any question and you be sure find your answer ?</textarea>
+								<i class="icon-pencil"></i>
+								<span class="color button small publish-question">Ask Now</span>
+							</p>
+						</form>
+					</div>
+				</div><!-- End row -->
+			</div><!-- End box_icon -->
+		</div><!-- End container -->
+	</div><!-- End section-warp -->
+	
+	<section class="container main-content">
+		<div class="row">
+			<div class="col-md-9">
+				
+				<div class="tabs-warp question-tab">
+		            
+		            <div class="tab-inner-warp">
+
+						<div class="tab-inner">
+							{%if not questions and not answersbyusers%}
+							{%for question in allqs%}
+							<article class="question question-type-normal">
+								<h2>
+									<a href="{%url 'showquestion' question.id%}">{{question.Title}}</a>
+								</h2>
+
+								<div class="question-author">
+									<a href="{%url 'profile' question.by.id%}" original-title="{{question.by.first_name}}" class="question-author-img tooltip-n"><span></span><img alt="" src="{{question.by.profile_pic.url}}"></a>
+								</div>
+								<div class="question-inner">
+									<div class="clearfix"></div>
+									<p class="question-desc">{{question.description}}</p>
+</div>
+</article>
+							{%endfor%}
+							{%endif%}
+							{%for question in questions%}
+							<article class="question question-type-normal">
+								<h2>
+									<a href="{%url 'showquestion' question.id%}">{{question.Title}}</a>
+								</h2>
+
+								<div class="question-author">
+									<a href="{%url 'profile' question.by.id%}" original-title="{{question.by.first_name}}" class="question-author-img tooltip-n"><span></span><img alt="" src="{{question.by.profile_pic.url}}"></a>
+								</div>
+								<div class="question-inner">
+									<div class="clearfix"></div>
+									<p class="question-desc">{{question.description}}</p>
+</div>
+</article>
+							{%endfor%}
+							
+							{%for question in answersbyuser%}
+							{%if question.of not in questions%}
+							<article class="question question-type-normal">
+								<h2>
+									<a href="{%url 'showquestion' question.of.id%}">{{question.of.Title}}</a>
+								</h2>
+
+								<div class="question-author">
+									<a href="{%url 'profile' question.of.by.id%}" original-title="{{question.of.by.first_name}}" class="question-author-img tooltip-n"><span></span><img alt="" src="{{question.by.profile_pic.url}}"></a>
+								</div>
+								<div class="question-inner">
+									<div class="clearfix"></div>
+									<p class="question-desc">{{question.of.description}}</p>
+</div>
+</article>						{%endif%}
+							{%endfor%}
+							
+							
+												
+					    </div>
+					</div>
+		        </div><!-- End page-content -->
+			</div><!-- End main -->
+			<aside class="col-md-3 sidebar">
+				
+				<div class="widget">
+					<h3 class="widget_title">certified users</h3>
+					<ul>	{%for cuser in cusers%}
+						<li><h6><a href="{%url 'profile' cusers.id%}">{{cuser.first_name}}</a></h6></li>
+						{%endfor%}
+							
+					</ul>
+				</div>
+				
+				
+			</aside><!-- End sidebar -->
+		</div><!-- End row -->
+	</section><!-- End container -->
+	
+	<footer id="footer">
+		<section class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="widget widget_contact">
+						<h3 class="widget_title">Where We Are ?</h3>
+						<p>We are currently located in delhi and work from our hostel .</p>
+						<ul>
+							<li>
+								<span>Address :</span>
+								Ask Me Network, DTU,Delhi.
+							</li>
+							<li>
+								<span>Support :</span>Support Telephone No : (+(91)0000000000
+							</li>
+							<li>Support Email Account : info@example.com</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="widget">
+						<h3 class="widget_title">Quick Links</h3>
+						<ul>
+							<li><a href="{%url 'main'%}">Home</a></li>
+							<li><a href="{%url 'questionupload'%}">Ask Question</a></li>
+							<li><a href="#">About</a></li>
+							
+							<li><a href="{%url 'contact_us'%}">Contact Us</a></li>
+							<li><a href="#">FAQs</a></li>
+						</ul>
+					</div>
+				</div>
+			</div><!-- End row -->
+		</section><!-- End container -->
+	</footer><!-- End footer -->
+	<footer id="footer-bottom">
+		<section class="container">
+			<div class="copyrights f_left">Copyright 2015 AskMe</div>
+			<div class="social_icons f_right">
+				<ul>
+					<li class="twitter"><a original-title="Twitter" class="tooltip-n" href="#"><i class="social_icon-twitter font17"></i></a></li>
+					<li class="facebook"><a original-title="Facebook" class="tooltip-n" href="#"><i class="social_icon-facebook font17"></i></a></li>
+					<li class="gplus"><a original-title="Google plus" class="tooltip-n" href="#"><i class="social_icon-gplus font17"></i></a></li>
+					<li class="youtube"><a original-title="Youtube" class="tooltip-n" href="#"><i class="social_icon-youtube font17"></i></a></li>
+					<li class="skype"><a original-title="Skype" class="tooltip-n" href="skype:#?call"><i class="social_icon-skype font17"></i></a></li>
+					<li class="flickr"><a original-title="Flickr" class="tooltip-n" href="#"><i class="social_icon-flickr font17"></i></a></li>
+					<li class="rss"><a original-title="Rss" class="tooltip-n" href="#"><i class="social_icon-rss font17"></i></a></li>
+				</ul>
+			</div><!-- End social_icons -->
+		</section><!-- End container -->
+	</footer><!-- End footer-bottom -->
+</div><!-- End wrap -->
+
+<div class="go-up"><i class="icon-chevron-up"></i></div>
+
+<!-- js -->
+<script src="{%static 'main/js/jquery.min.js'%}"></script>
+<script src="{%static 'main/js/jquery-ui-1.10.3.custom.min.js'%}"></script>
+<script src="{%static 'main/js/jquery.easing.1.3.min.js'%}"></script>
+<script src="{%static 'main/js/html5.js'%}"></script>
+<script src="{%static 'main/js/twitter/jquery.tweet.js'%}"></script>
+<script src="{%static 'main/js/jflickrfeed.min.js'%}"></script>
+<script src="{%static 'main/js/jquery.inview.min.js'%}"></script>
+<script src="{%static 'main/js/jquery.tipsy.js'%}"></script>
+<script src="{%static 'main/js/tabs.js'%}"></script>
+<script src="{%static 'main/js/jquery.flexslider.js'%}"></script>
+<script src="{%static 'main/js/jquery.prettyPhoto.js'%}"></script>
+<script src="{%static 'main/js/jquery.carouFredSel-6.2.1-packed.js'%}"></script>
+<script src="{%static 'main/js/jquery.scrollTo.js'%}"></script>
+<script src="{%static 'main/js/jquery.nav.js'%}"></script>
+<script src="{%static 'main/js/tags.js'%}"></script>
+<script src="{%static 'main/js/jquery.bxslider.min.js'%}"></script>
+<script src="{%static 'main/js/custom.js'%}"></script>
+<!-- End js -->
+
+</body>
+</html>

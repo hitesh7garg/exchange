@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+<title> Bill </title>
+</head>
+<body>
+<ul>
+	{% for bill in bills %}
+		<li> Amount:{{bill.amount}}</li>
+		<li> Name:{{bill.customer_name}}</li>
+		<li> Id:{{bill.customer_Id}}</li>
+		<li>---------</li>
+	{% endfor %}
+
+</ul>
+</body>
+</html>

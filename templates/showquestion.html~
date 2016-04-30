@@ -1,0 +1,236 @@
+<!doctype html>
+{%load staticfiles%}
+{%load bootstrap3%}
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'main/content.css'%}">
+<script src="Slider.js"></script>
+{%bootstrap_css%}
+{%bootstrap_javascript%}
+
+<title>MyQuora</title>
+</head>
+
+<body onLoad="photoA()" background="{% static 'main/background.jpg'%}">
+
+<div class="header">
+<br>
+<button id="signin"><a href="{%url 'logout'%}">LOG OUT</a></button>
+</div>
+<div style="margin:100px 0px 0px 30px; overflow-y:scroll;height:1000px">
+<div>	<p style="font-size:25px;">{{question.Title}}</p>
+	<p style="font-size:13px;">asked by:<a href="{%url 'profile' question.by.id%}">{{question.by.first_name}}</a></p>
+<hr style="color:black; height:5px;">
+                    <img height="400px" width="600px" src = "{{question.image.url}}"/>
+			<p style="font-size:18px;">{{question.description}}</p>
+		    </div>
+
+		    {%for answer in question.answer_of.all%}
+<hr style="color:black; height:5px;">
+
+		    	<div class="column"><p>{{answer.description}}</p>
+			<p>by:<a href="{%url 'profile' answer.by.id %}">{{answer.by.first_name}}</a></p>
+			<img height="100px" width="100px" src = "{{answer.image.url}}"/>
+		    	</div>
+		    {%endfor%}
+<hr style="color:black; height:5px;">
+			 <div class="container-fluid">
+			    <div class="row">
+				<div class="col-md-8 col-offset-md-2">
+				    <form action = "{% url 'answercreate' question.id %}" method="post" enctype="multipart/form-data">
+				        {% csrf_token %}
+				        {% bootstrap_form form %}
+				        {% buttons submit='Upload'%}
+				        {% endbuttons %}
+				    </form>
+				</div>
+			    </div>
+			</div>
+</div>
+
+
+<div id="footer">
+
+<p>
+<font color="#C7C7C7" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" style="opacity:0.3" size="2">
+© 2007 - 2015 Webligo
+</font>
+<br>
+<br>
+<a href="#">
+<img src="Tech stars.png" style="opacity:0.1" height="70" width="150" >
+</a>
+</p>
+
+
+<p>
+<font color="#F9F9F9" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif">
+Free Trials
+</font>
+<br>
+<br>
+<font color="#9F9F9F" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" size="2">
+<a class="specialeffects" href = "#">
+SE Cloud free trial
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+SE PHP free trial
+</a>
+</font>
+</p>
+
+
+<p>
+<font color="#F9F9F9" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif">
+Company
+</font>
+<br>
+<br>
+<font color="#9F9F9F" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" size="2">
+<a class="specialeffects" href = "#">
+Contact us
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Affiliate program
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Reseller program
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Meet our team
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Jobs
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Terms and Privacy
+</a>
+</font>
+</p>
+
+
+<p>
+<font color="#F9F9F9" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif">
+Resources
+</font>
+<br>
+<br>
+<font color="#9F9F9F" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" size="2">
+<a class="specialeffects" href = "#">
+Sign In
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Pricing
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Add-on marketplace
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Support & FAQ
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Find developers
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Our Company PHP 4.9 Roadmap 
+</a>
+</font>
+</p>
+
+<p>
+<font color="#F9F9F9" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif">
+Articles
+</font>
+<br>
+<br>
+<font color="#9F9F9F" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" size="2">
+<a class="specialeffects" href = "#">
+How to build a social network
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Building an online community
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+How to reach your audience
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Video tutorials
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Creating Custom Themes
+</a>
+</font>
+</p>
+
+<p>
+<font color="#F9F9F9" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif">
+Connect with us!
+</font>
+<br>
+<br>
+<font color="#9F9F9F" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" size="2">
+<a class="specialeffects" href = "#">
+Blog
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Twitter
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Facebook
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Youtube
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Google Plus 
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Newsletter
+</a>
+</font>
+
+</p>
+</div>
+</body>
+</html>
+

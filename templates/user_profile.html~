@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+{%load staticfiles%}
+{%load bootstrap3%}
+<head>
+
+	<!-- Basic Page Needs -->
+	<meta charset="utf-8">
+	<title>Exchange</title>
+	<meta name="description" content="Ask me Responsive Questions and Answers Template">
+	<meta name="author" content="2code.info">
+	
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Main Style -->
+	<link rel="stylesheet" href="{% static 'main/css/style.css'%}">
+	
+	<!-- Skins -->
+	<link rel="stylesheet" href="{% static 'main/css/skins/skins.css'%}">
+	
+	<!-- Responsive Style -->
+	<link rel="stylesheet" href="{%static 'main/css/responsive.css'%}">
+	
+	<!-- Favicons -->
+	<link rel="shortcut icon" href="http://2code.info/demo/html/ask-me/images/favicon.ico">
+	<script src="{% static 'base/js/jquery-1.11.1.js' %}"></script>
+        <script src="{% static 'account/js/followunfollow.js' %}"></script>
+	{%bootstrap_css%}
+	{%bootstrap_javascript%}
+  
+</head>
+<body>
+
+<div class="loader"><div class="loader_html"></div></div>
+
+<div id="wrap">
+	<div id="header-top">
+		<section class="container clearfix">
+			<nav class="header-top-nav">
+				<ul>
+					<li><a href="{%url 'contact_us'%}"><i class="icon-envelope"></i>Contact</a></li>
+					<li><a href="#"><i class="icon-headphones"></i>Support</a></li>
+					<li><a href="{%url 'logout'%}" id="login-panel"><i class="icon-user"></i>Logout</a></li>
+				</ul>
+			</nav>
+			<div class="header-search">
+				<form>
+				    <input type="text" value="Search here ..." onfocus="if(this.value=='Search here ...')this.value='';" onblur="if(this.value=='')this.value='Search here ...';">
+				    <button type="submit" class="search-submit"></button>
+				</form>
+			</div>
+		</section><!-- End container -->
+	</div><!-- End header-top -->
+	<header id="header">
+		<section class="container clearfix">
+			<div class="logo"><a href="{%url 'main'%}"><img alt="" src="{%static 'main/images/logo.png'%}"></a></div>
+			<nav class="navigation">
+				<ul>
+					<li class="current_page_item"><a href="{%url 'main'%}">Home</a></li>
+					<li class="ask_question"><a href="{%url 'questionupload'%}">Ask Question</a></li>
+					<li><a href="{%url 'profile' user.id%}">{{user.username}}</a>
+						<ul>
+							<li><a href="{%url 'profile' user.id%}">Profile</a></li>
+							<li><a href="{%url 'editprofilepage' user.id%}">Edit Profile</a></li>
+							<li><a href="{%url 'logout'%}">Logout</a></li>
+						</ul>
+					</li>
+					<li><a href="{%url 'contact_us'%}">Contact Us</a></li>
+				</ul>
+			</nav>
+		</section><!-- End container -->
+	</header><!-- End header -->
+	
+	<div class="breadcrumbs">
+		<section class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1>User Profile : {{userprofile.username}}</h1>
+				</div>
+				<div class="col-md-12">
+					<div class="crumbs">
+						<a href="{%url 'main'%}">Home</a>
+						<span class="crumbs-span">/</span>
+						<a href="#">User</a>
+						<span class="crumbs-span">/</span>
+						<span class="current">User Profile : {{userprofile.username}}</span>
+					</div>
+				</div>
+			</div><!-- End row -->
+		</section><!-- End container -->
+	</div><!-- End breadcrumbs -->
+	
+	<section class="container main-content">
+		<div class="row">
+			<div class="col-md-9">
+				<div class="row">
+					<div class="user-profile">
+						<div class="col-md-12">
+							<div class="page-content">
+								<h2>About {{userprofile.username}}</h2>
+								<div class="user-profile-img"><img width="60" height="60" src="{{userprofile.profile_pic.url}}" alt="admin"></div>
+								<div class="ul_list ul_list-icon-ok about-user">
+									<ul>
+										<li><i class=""></i>Age: <span>{{userprofile.age}}</span></li>
+										<li><i class=""></i>sex : <span>{{userprofile.sex}}</span></li>
+										<li><i class="icon-globe"></i>Website : <a target="_blank" href="http://google.com">view</a></li>
+										<li>
+            {% if u in userprofile.following.all %}
+            <a class = 'fnuf unfollow' data-uid = "{{u.id}}" href="#"> unfollow</a>
+            {% else %}
+            <a class = 'fnuf follow' data-uid = "{{u.id}}" href="#"> follow</a>
+            {% endif %}
+
+        </li>
+									</ul>
+								</div>
+								
+								<div class="clearfix"></div>
+								<span class="user-follow-me">Follow Me</span>
+								<a href="#" original-title="Facebook" class="tooltip-n">
+									<span class="icon_i">
+										<span class="icon_square" icon_size="30" span_bg="#3b5997" span_hover="#2f3239">
+											<i class="social_icon-facebook"></i>
+										</span>
+									</span>
+								</a>
+								<a href="#" original-title="Twitter" class="tooltip-n">
+									<span class="icon_i">
+										<span class="icon_square" icon_size="30" span_bg="#00baf0" span_hover="#2f3239">
+											<i class="social_icon-twitter"></i>
+										</span>
+									</span>
+								</a>
+								<a href="#" original-title="Linkedin" class="tooltip-n">
+									<span class="icon_i">
+										<span class="icon_square" icon_size="30" span_bg="#006599" span_hover="#2f3239">
+											<i class="social_icon-linkedin"></i>
+										</span>
+									</span>
+								</a>
+								<a href="#" original-title="Google plus" class="tooltip-n">
+									<span class="icon_i">
+										<span class="icon_square" icon_size="30" span_bg="#c43c2c" span_hover="#2f3239">
+											<i class="social_icon-gplus"></i>
+										</span>
+									</span>
+								</a>
+								<a href="#" original-title="Email" class="tooltip-n">
+									<span class="icon_i">
+										<span class="icon_square" icon_size="30" span_bg="#000" span_hover="#2f3239">
+											<i class="social_icon-email"></i>
+										</span>
+									</span>
+								</a>
+							</div><!-- End page-content -->
+						</div><!-- End col-md-12 -->
+						<div class="page-content page-content-user">
+							<div class="user-questions">
+								{%for question in questions%}
+								<article class="question user-question">
+									<h3>
+										<a href="{%url 'showquestion' question.id%}">{{question.Title}}</a>
+									</h3>
+									<div class="question-type-main"><i class="icon-question-sign"></i>Question</div>
+									<div class="question-content">
+										<div class="question-bottom">
+											
+											<span class="question-date"><i class="icon-time"></i>{{question.on}}</span>
+											
+		
+										</div>
+									</div>
+								</article>
+								{%endfor%}
+						
+						
+						
+							</div>
+						</div>
+				
+				<div class="height_20"></div>
+			</div><!-- End main -->
+			
+		</div><!-- End row -->
+	</section><!-- End container -->
+	
+	<footer id="footer">
+		<section class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="widget widget_contact">
+						<h3 class="widget_title">Where We Are ?</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi adipiscing gravida odio, sit amet suscipit risus ultrices eu.</p>
+						<ul>
+							<li>
+								<span>Address :</span>
+								Ask Me Network, 33 Street, syada Zeinab, Cairo, Egypt.
+							</li>
+							<li>
+								<span>Support :</span>Support Telephone No : (+2)01111011110
+							</li>
+							<li>Support Email Account : info@example.com</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="widget">
+						<h3 class="widget_title">Quick Links</h3>
+						<ul>
+							<li><a href="{%url 'main'%}">Home</a></li>
+							<li><a href="{%url 'questionupload'%}">Ask Question</a></li>
+							<li><a href="#">About</a></li>
+							
+							<li><a href="{%url 'contact_us'%}">Contact Us</a></li>
+							<li><a href="#">FAQs</a></li>
+						</ul>
+					</div>
+				</div>
+			</div><!-- End row -->
+		</section><!-- End container -->
+	</footer><!-- End footer -->
+	<footer id="footer-bottom">
+		<section class="container">
+			<div class="copyrights f_left">Copyright 2015 Exchange</div>
+			<div class="social_icons f_right">
+				<ul>
+					<li class="twitter"><a original-title="Twitter" class="tooltip-n" href="#"><i class="social_icon-twitter font17"></i></a></li>
+					<li class="facebook"><a original-title="Facebook" class="tooltip-n" href="#"><i class="social_icon-facebook font17"></i></a></li>
+					<li class="gplus"><a original-title="Google plus" class="tooltip-n" href="#"><i class="social_icon-gplus font17"></i></a></li>
+					<li class="youtube"><a original-title="Youtube" class="tooltip-n" href="#"><i class="social_icon-youtube font17"></i></a></li>
+					<li class="skype"><a original-title="Skype" class="tooltip-n" href="skype:#?call"><i class="social_icon-skype font17"></i></a></li>
+					<li class="flickr"><a original-title="Flickr" class="tooltip-n" href="#"><i class="social_icon-flickr font17"></i></a></li>
+					<li class="rss"><a original-title="Rss" class="tooltip-n" href="#"><i class="social_icon-rss font17"></i></a></li>
+				</ul>
+			</div><!-- End social_icons -->
+		</section><!-- End container -->
+	</footer><!-- End footer-bottom -->
+</div><!-- End wrap -->
+
+<div class="go-up"><i class="icon-chevron-up"></i></div>
+
+<!-- js -->
+<script src="{%static 'main/js/jquery.min.js'%}"></script>
+<script src="{%static 'main/js/jquery-ui-1.10.3.custom.min.js'%}"></script>
+<script src="{%static 'main/js/jquery.easing.1.3.min.js'%}"></script>
+<script src="{%static 'main/js/html5.js'%}"></script>
+<script src="{%static 'main/js/twitter/jquery.tweet.js'%}"></script>
+<script src="{%static 'main/js/jflickrfeed.min.js'%}"></script>
+<script src="{%static 'main/js/jquery.inview.min.js'%}"></script>
+<script src="{%static 'main/js/jquery.tipsy.js'%}"></script>
+<script src="{%static 'main/js/tabs.js'%}"></script>
+<script src="{%static 'main/js/jquery.flexslider.js'%}"></script>
+<script src="{%static 'main/js/jquery.prettyPhoto.js'%}"></script>
+<script src="{%static 'main/js/jquery.carouFredSel-6.2.1-packed.js'%}"></script>
+<script src="{%static 'main/js/jquery.scrollTo.js'%}"></script>
+<script src="{%static 'main/js/jquery.nav.js'%}"></script>
+<script src="{%static 'main/js/tags.js'%}"></script>
+<script src="{%static 'main/js/jquery.bxslider.min.js'%}"></script>
+<script src="{%static 'main/js/custom.js'%}"></script>
+
+<script>
+            function init() {
+                followUnfollow.init();
+            }
+            $(document).ready(init);
+        </script>
+<!-- End js -->
+
+</body>
+</html>

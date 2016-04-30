@@ -1,0 +1,16 @@
+<html>
+<head>
+</head>
+<body>
+  <h1>CONTACT US</h1>
+  {%if form.errors%}
+	<p>Please correct the error{{form.errors|pluralize}} below.</p>
+  {%endif%}
+  <form id="contact_us" action="/contact/"method="post">
+  <table>
+	{{form.as_table}}
+  </table>
+  {%csrf_token%}
+  <button type="submit">send</button></form>
+</html>
+

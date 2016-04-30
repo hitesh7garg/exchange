@@ -1,0 +1,205 @@
+<!doctype html>
+{%load staticfiles%}
+{%load bootstrap3%}
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'main/content.css'%}">
+{%bootstrap_css%}
+{%bootstrap_javascript%}
+<meta charset="utf-8">
+<title>MyQuora</title>
+</head>
+
+<body onLoad="photoA()">
+
+<div class="header">
+<br>
+<button>SIGN IN</button>
+</div>
+
+
+
+<div id="footer">
+
+<p>
+<font color="#C7C7C7" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" style="opacity:0.3" size="2">
+© 2007 - 2015 Webligo
+</font>
+<br>
+<br>
+<a href="#">
+<img src="Tech stars.png" style="opacity:0.1" height="70" width="150" >
+</a>
+</p>
+
+
+<p>
+<font color="#F9F9F9" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif">
+Free Trials
+</font>
+<br>
+<br>
+<font color="#9F9F9F" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" size="2">
+<a class="specialeffects" href = "#">
+SE Cloud free trial
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+SE PHP free trial
+</a>
+</font>
+</p>
+
+
+<p>
+<font color="#F9F9F9" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif">
+Company
+</font>
+<br>
+<br>
+<font color="#9F9F9F" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" size="2">
+<a class="specialeffects" href = "#">
+Contact us
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Affiliate program
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Reseller program
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Meet our team
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Jobs
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Terms and Privacy
+</a>
+</font>
+</p>
+
+
+<p>
+<font color="#F9F9F9" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif">
+Resources
+</font>
+<br>
+<br>
+<font color="#9F9F9F" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" size="2">
+<a class="specialeffects" href = "#">
+Sign In
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Pricing
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Add-on marketplace
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Support & FAQ
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Find developers
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Our Company PHP 4.9 Roadmap 
+</a>
+</font>
+</p>
+
+<p>
+<font color="#F9F9F9" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif">
+Articles
+</font>
+<br>
+<br>
+<font color="#9F9F9F" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" size="2">
+<a class="specialeffects" href = "#">
+How to build a social network
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Building an online community
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+How to reach your audience
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Video tutorials
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Creating Custom Themes
+</a>
+</font>
+</p>
+
+<p>
+<font color="#F9F9F9" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif">
+Connect with us!
+</font>
+<br>
+<br>
+<font color="#9F9F9F" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" size="2">
+<a class="specialeffects" href = "#">
+Blog
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Twitter
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Facebook
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Youtube
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Google Plus 
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Newsletter
+</a>
+</font>
+
+</p>
+</div>
+</body>
+</html>

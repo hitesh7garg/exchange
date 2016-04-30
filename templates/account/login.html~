@@ -1,0 +1,36 @@
+<!doctype html>
+{% load staticfiles %}
+{% load bootstrap3 %}
+<html>
+    <head>
+        <title>MyQuora </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+    </head>
+    <body background="{%static 'account/background.jpg'%}">
+        <div class = 'container-fluid'>
+            <div class = 'column'>
+                
+                <div class="col-md-4 col-md-offset-4" style='margin-top:130px;'>
+                    {% if act %}
+                    <p> Your account is activated. Login to Procceed. </p>
+                    {% endif %}
+                    <form action = "{% url 'login' %}" method = 'POST' class="form">
+                        {% if next %}
+                        <input type="hidden" name='next' value ="{{next}}">
+                        {% endif %}
+                        {% csrf_token %}
+                        {% bootstrap_form loginform %}
+                        {% buttons submit='Login' %}
+                        {% endbuttons %}
+                    </form>
+		<div class='list-group-item list-group-item-success'><p><center>Not registered yet?? New User 
+		<a href="{%url 'rsignup'%}">Sign up</a>
+		here</center></p></div>
+                </div>
+		
+            </div>
+        </div>
+    </body>
+</html>

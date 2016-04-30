@@ -1,0 +1,312 @@
+<!doctype html>
+{%load staticfiles%}
+{%load bootstrap3%}
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'main/Profile.css'%}">
+<script src="{% static 'base/js/jquery-1.11.1.js' %}"></script>
+<script src="{% static 'account/js/followunfollow.js' %}"></script>
+{%bootstrap_css%}
+{%bootstrap_javascript%}
+<meta charset="utf-8">
+<title>Profile Page</title>
+</head>
+
+<body background="{% static 'main/background.jpg'%}" style="opacity:0.9">
+<div class="header container"><div class="column" style="  height: 30px;	
+  border: 0;
+  background:#08A3D2;
+  border-radius: 4px;
+  box-shadow: 0 2px 0 #006599;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  margin: 0;
+  outline: 0 ;
+  padding: 5px 5px;
+  transition: all .1s linear;
+  font-family: Arial;
+  overflow:hidden;
+  position:absolute;
+  top:25px;
+  right:120px;"><a href="{%url 'logout'%}">logout</a></div>
+<div class="column" style="  height: 30px;	
+  border: 0;
+  background:#08A3D2;
+  border-radius: 4px;
+  box-shadow: 0 2px 0 #006599;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  margin: 0;
+  outline: 0 ;
+  padding: 5px 5px;
+  transition: all .1s linear;
+  font-family: Arial;
+float:right;
+  overflow:hidden;
+  position:absolute;
+  top:25px;
+  right:120px;"><a href={%url 'questionupload'%}>ask any question</a></div>
+</div>
+<div id="side">
+<a href="#">
+<img src="{% static 'main/profile pic.jpg'%}" height="100" id="img">
+</a>
+<p align="left" id="paragraph">
+<font face="Lucida Grande, Lucida Sans Unicode, Lucida Sans, DejaVu Sans, Verdana, sans-serif" size="+2">
+<a href="#">{{userprofile.username}}</a>
+</font>
+<br>
+<br>
+<font face="Lucida Grande, Lucida Sans Unicode, Lucida Sans, DejaVu Sans, Verdana, sans-serif" size="2" color="#2D2D2D">
+0 posts
+<br>
+<br>
+0 likes received
+<br>
+<br>
+0 comments received
+<br>
+<br>
+0 points
+</font>
+</p>
+</div>
+
+
+
+
+<div class="box1" style="float:right; margin:100px 80px 0px 450px;overflow-y:scroll; height:800px">{% for question in questions %}
+		    <div class="column"><p><a href="{%url 'showquestion' question.id%}">{{question.Title}}</a></p>
+                    
+		    </div>
+		    
+                  {%endfor%}
+
+</div>
+
+
+
+<div id="side1">
+{% for u in users %}
+        <div>
+            {{u.username}} 
+            {% if u in user.following.all %}
+            <a class = 'fnuf unfollow' data-uid = "{{u.id}}" href="#"> unfollow</a>
+            {% else %}
+            <a class = 'fnuf follow' data-uid = "{{u.id}}" href="#"> follow</a>
+            {% endif %}
+
+        </div>
+        {% endfor %}
+        
+</div>
+
+
+
+<div id="side2">
+<p id="paragraph3">
+<font face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" size="+1"><b>
+Lists
+</b>
+</font>
+</p>
+<div class="box2"><font size="-1">This member has not created any lists yet.</font>
+</div>
+
+</div>
+
+
+
+
+<div id="footer">
+<p>
+<font color="#C7C7C7" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" style="opacity:0.3" size="2">
+© 2007 - 2015 Webligo
+</font>
+<br>
+<br>
+<a href="#">
+<img src="Tech stars.png" style="opacity:0.1" height="70" width="150" >
+</a>
+</p>
+
+<p>
+<font color="#F9F9F9" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif">
+Free Trials
+</font>
+<br>
+<br>
+<font color="#9F9F9F" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" size="2">
+<a class="specialeffects" href = "#">
+SE Cloud free trial
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+SE PHP free trial
+</a>
+</font>
+</p>
+
+
+<p>
+<font color="#F9F9F9" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif">
+Company
+</font>
+<br>
+<br>
+<font color="#9F9F9F" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" size="2">
+<a class="specialeffects" href = "#">
+Contact us
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Affiliate program
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Reseller program
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Meet our team
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Jobs
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Terms and Privacy
+</a>
+</font>
+</p>
+
+
+<p>
+<font color="#F9F9F9" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif">
+Resources
+</font>
+<br>
+<br>
+<font color="#9F9F9F" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" size="2">
+<a class="specialeffects" href = "#">
+Sign In
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Pricing
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Add-on marketplace
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Support & FAQ
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Find developers
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Our Company PHP 4.9 Roadmap 
+</a>
+</font>
+</p>
+
+<p>
+<font color="#F9F9F9" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif">
+Articles
+</font>
+<br>
+<br>
+<font color="#9F9F9F" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" size="2">
+<a class="specialeffects" href = "#">
+How to build a social network
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Building an online community
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+How to reach your audience
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Video tutorials
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Creating Custom Themes
+</a>
+</font>
+</p>
+
+<p>
+<font color="#F9F9F9" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif">
+Connect with us!
+</font>
+<br>
+<br>
+<font color="#9F9F9F" face="Segoe, Segoe UI, DejaVu Sans, Trebuchet MS, Verdana, sans-serif" size="2">
+<a class="specialeffects" href = "#">
+Blog
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Twitter
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Facebook
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Youtube
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Google Plus 
+</a>
+<br>
+<br>
+<a class="specialeffects" href = "#">
+Newsletter
+</a>
+</font>
+
+</p>
+</div>
+<script>
+            function init() {
+                followUnfollow.init();
+            }
+            $(document).ready(init);
+        </script>
+</body>
+
+</html>
+=
